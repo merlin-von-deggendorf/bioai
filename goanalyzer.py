@@ -3,20 +3,13 @@ import requests
 from Bio import PDB
 from io import BytesIO, StringIO
 import sys
-
-# Define the base folder and UniProtKB file name
-base_folder = '/mnt/data/'
-uni_prot_db = 'uniprot_sprot.dat'
-
-# Function to get the full file path
-def get_uni_prot_file():
-    return base_folder + uni_prot_db
+import data_manager
 
 
 def analyze_go_terms():
     # Get the full file path
     goterms: dict[int, int] = {}
-    file_path = get_uni_prot_file()
+    file_path = data_manager.get_uni_prot_file()
     # Parse the UniProtKB flat file using SwissProt
     with open(file_path, 'r') as file:
         for record in SwissProt.parse(file):
@@ -31,8 +24,8 @@ def analyze_go_terms():
                     goterms[go_int]=goterm+1
                     
 
-
-analyze_go_terms()
+if __name__ == '__main__':
+    analyze_go_terms()
                     
                         
 
