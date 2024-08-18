@@ -1,0 +1,20 @@
+#gitignore all pycache files
+__pycache__/
+#gitignore all pyc files
+*.pyc
+#gitignore all pycache files
+*.pyo
+#gitignore all pycache files
+*.pyd
+#gitignore all pycache files
+*.pyw
+#gitignore all pycache files
+*.pyz
+#gitignore all pycache files
+*.pywz
+#gitignore all pycache files
+*.pyzw
+#gitignore all pycache files
+*.pycachefile
+#gitignore all file in the __pycache__ directory
+__pycache__/*
