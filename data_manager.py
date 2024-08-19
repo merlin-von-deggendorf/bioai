@@ -32,7 +32,10 @@ def write_samples(samples:list['Sample'],file_name):
     with open(path,'wb') as file:
         #write samples as json
         pickle.dump(samples,file)
-
+def load_samples(name:str) -> list['Sample']:
+    with open(samples_path+name,'rb') as file:
+        samples=pickle.load(file)
+    return samples
 def create_sample_file(sample_size:int,file_name:str):
     samples=extract_sample(sample_size)
     write_samples(samples,file_name)
@@ -48,5 +51,14 @@ class Sample:
         for xref in record.cross_references:
             if xref[0]=='PDB':
                 self.pdb_ids.append(str(xref[1]))
-            if xref[0]=='AlphaFold':
+            if xref[0]=='AlphaFoldDB':
                 self.alpha_fold_ids.append(str(xref[1]))
+
+class SampleList:
+    def __init__(self,samples:list[Sample]):
+        self.samples=samples
+    def get_sample_by_id(self,id:str):
+        for sample in self.samples:
+            if sample.id==id:
+                return sample
+        return None

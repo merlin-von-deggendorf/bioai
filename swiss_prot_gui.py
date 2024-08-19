@@ -13,7 +13,7 @@ file_menu = tk.Menu(menu_bar, tearoff=0)
 menu_bar.add_cascade(label="Menu", menu=file_menu)
 file_menu.add_command(label="Exit", command=root.quit)
 # Create a Notebook widget
-notebook = ttk.Notebook(root,width=800,height=600)
+notebook = ttk.Notebook(root,width=1600,height=600)
 notebook.grid(row=0, column=0)
 
 # Create the first tab
