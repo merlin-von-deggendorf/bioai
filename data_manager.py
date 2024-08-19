@@ -53,6 +53,8 @@ class Sample:
                 self.pdb_ids.append(str(xref[1]))
             if xref[0]=='AlphaFoldDB':
                 self.alpha_fold_ids.append(str(xref[1]))
+    def create_fasta(self):
+        return '>'+self.id+'\n'+self.sequence+'\n'
 
 class SampleList:
     def __init__(self,samples:list[Sample]):
