@@ -1,6 +1,7 @@
 import tkinter as tk
 from tkinter import ttk
 import go_analyzer_gui
+import colabfold
 
 # Create the main window
 root = tk.Tk()
@@ -17,18 +18,24 @@ notebook = ttk.Notebook(root,width=1600,height=600)
 notebook.grid(row=0, column=0)
 
 # Create the first tab
-tab1 = ttk.Frame(notebook)
+tab1 = tk.Frame(notebook)
 notebook.add(tab1, text="go")
-ttk.Label(tab1, text="This is the content of Tab 1").grid(row=0, column=0)
+tk.Label(tab1, text="This is the content of Tab 1").grid(row=0, column=0)
 text_area = tk.Text(tab1, width=40, height=10)
 text_area.grid(row=1, column=0)
 # Make the text area read-only
 text_area.config(state="disabled")
 
-testing_tab = ttk.Frame(notebook)
+testing_tab = tk.Frame(notebook)
 notebook.add(testing_tab, text="Testing")
 go_analyzer_gui.GoAnalyzer(testing_tab)
+
+# Local colabfold tab
+colabfold_tab = tk.Frame(notebook)
+notebook.add(colabfold_tab, text="ColabFold")
+colabfold.ColabFoldGui(colabfold_tab)
+
 # Focus the testing tab
-notebook.select(testing_tab)
+notebook.select(colabfold_tab)
 # Start the Tkinter event loop
 root.mainloop()
