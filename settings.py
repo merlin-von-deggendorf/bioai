@@ -1,2 +1,5 @@
-
+test_folder='/mnt/tests/'
+test_samples_folder=test_folder+'samples/'
+test_structure_folder=test_folder+'structures/'
+test_sequences_folder=test_folder+'sequences/'
 folds_folder='/mnt/data/folds/'

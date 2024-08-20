@@ -3,6 +3,7 @@ from Bio.SwissProt import Record
 import random
 import json
 import pickle
+import settings
 
 # Define the base folder and UniProtKB file name
 base_folder = '/mnt/data/'
@@ -37,6 +38,7 @@ def load_samples(name:str) -> list['Sample']:
         samples=pickle.load(file)
     return samples
 def create_sample_file(sample_size:int,file_name:str):
+    
     samples=extract_sample(sample_size)
     write_samples(samples,file_name)
 
