@@ -2,6 +2,7 @@ import tkinter as tk
 from tkinter import ttk
 import go_analyzer_gui
 import colabfold
+import autodock
 
 # Create the main window
 root = tk.Tk()
@@ -35,6 +36,9 @@ colabfold_tab = tk.Frame(notebook)
 notebook.add(colabfold_tab, text="ColabFold")
 colabfold.ColabFoldGui(colabfold_tab)
 
+autodock_tab = tk.Frame(notebook)
+notebook.add(autodock_tab, text="AutoDock")
+autodock.AutoDockGui(autodock_tab)
 # Focus the testing tab
 notebook.select(colabfold_tab)
 # Start the Tkinter event loop

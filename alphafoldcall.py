@@ -9,7 +9,6 @@ import data_manager  # Assuming this is already defined in your environment
 import shutil
 
 
-
 class StructureResult:
     def __init__(self, sequence, id=None, sequence_folder=None, structure_folder=None) -> None:
         # Initialize parameters
@@ -64,6 +63,8 @@ class StructureResult:
             self.stderr=self.queue.get()
         else:
             raise RuntimeError("No process has been started.")
+        # Optionally return self to allow method chaining
+        return self
     def list_structure(self):
         return os.listdir(self.structure_folder)
     
@@ -89,6 +90,12 @@ class StructureResult:
         if file is not None:
             return os.path.join(self.structure_folder,file)
         return None
+    def find_file(self):
+        #try relaxed first
+        file=self.get_file(1,True)
+        if file is None:
+            file=self.get_file(1,False)
+        return file
 
 
 if __name__ == "__main__":
@@ -102,15 +109,6 @@ if __name__ == "__main__":
 
     result.generate_structure(True, True)
     result.join()
-    import nglview as nv
-    import ipywidgets
-    #print list of files
-    file=result.get_absolute_file()
-        # Load the PDB file
-    view = nv.show_file(file)
-
-    # Display in a Jupyter notebook or standalone app
-    view.display()
     
 
     
