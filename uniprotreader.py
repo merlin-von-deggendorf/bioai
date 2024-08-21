@@ -69,7 +69,7 @@ def find_pdb():
             
 def extract_sample(end_line):
     file_path = get_uni_prot_file()
-    output_file = base_folder + 'sample.dat'
+    output_file = base_folder + uni_prot_db
     # write all the lines until end_line and write them to output_file
     with open(file_path, 'r') as file:
         with open(output_file, 'w') as out:
@@ -102,5 +102,5 @@ def process_pdb():
 
                     break
 
-
-process_pdb()
+if __name__ == '__main__':
+    process_pdb()

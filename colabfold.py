@@ -4,11 +4,10 @@ from tkinter import ttk
 import settings
 import alphafoldcall
 import os
-from pymol import cmd
-from pymol import finish_launching
 
 class ColabFoldGui:
     def __init__(self, parent):
+        self.pymol_process=None
         self.cwd=settings.folds_folder
         self.parent = parent
         self.fold_button = tk.Button(parent, text="Fold", command=self.fold)
@@ -45,16 +44,13 @@ class ColabFoldGui:
         print(structure_result.stdout)
         print(structure_result.stderr)
     def open_structure(self):
+        self.close_structure()
         id=self.structure_combobox.get()
         path=alphafoldcall.get_pdb(id,1,True)
         print(path)
-        finish_launching()
-        cmd.reinitialize()
-        cmd.load(path)
-        cmd.show("cartoon")
-        cmd.zoom()
+        self.pymol_process = subprocess.Popen(["pymol", path])
+
     def close_structure(self):
-        cmd.delete("all")
-        cmd.quit()
-        pass
+        if self.pymol_process!=None:
+            self.pymol_process.terminate()
       
