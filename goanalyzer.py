@@ -4,12 +4,13 @@ from Bio import PDB
 from io import BytesIO, StringIO
 import sys
 import data_manager
+import settings
 
 
 def analyze_go_terms():
     # Get the full file path
     goterms: dict[int, int] = {}
-    file_path = data_manager.get_uni_prot_file()
+    file_path = settings.abs_uni_prot_db
     # Parse the UniProtKB flat file using SwissProt
     with open(file_path, 'r') as file:
         for record in SwissProt.parse(file):

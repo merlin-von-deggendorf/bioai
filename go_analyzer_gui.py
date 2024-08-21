@@ -22,7 +22,7 @@ class GoAnalyzer:
         self.sample_name_label.grid(row=1, column=0)
         #combobox with all available samples
         #read sample names from the samples folder
-        samples_path = data_manager.samples_path
+        samples_path = settings.samples_folder
         # List all files in the samples path
         sample_files = os.listdir(samples_path)
         filenames = []
@@ -59,7 +59,7 @@ class GoAnalyzer:
         #copy the selected sample to the test folder
         if not os.path.exists(settings.test_samples_folder):
             os.makedirs(settings.test_samples_folder)
-        shutil.copy(data_manager.samples_path+sample_name, settings.test_samples_folder+sample_name)
+        shutil.copy(settings.samples_folder+sample_name, settings.test_samples_folder+sample_name)
         newfiles = os.listdir(settings.test_samples_folder)
         print(newfiles)
         

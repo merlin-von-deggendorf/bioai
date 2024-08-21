@@ -5,18 +5,11 @@ import json
 import pickle
 import settings
 
-# Define the base folder and UniProtKB file name
-base_folder = '/mnt/data/'
-uni_prot_db = 'uniprot_sprot.dat'
-samples_path=base_folder+'samples/'
 
-# Function to get the full file path
-def get_uni_prot_file():
-    return base_folder + uni_prot_db
 
 def extract_sample(sample_size:int):
     samples : list['Sample']=[]
-    with open(get_uni_prot_file(), 'r') as file:
+    with open(settings.abs_uni_prot_db, 'r') as file:
         records:list[Record]=[]
         for record in SwissProt.parse(file):
             records.append(record)
@@ -29,12 +22,12 @@ def extract_sample(sample_size:int):
     return samples
 
 def write_samples(samples:list['Sample'],file_name):
-    path=samples_path+file_name
+    path=settings.samples_folder+file_name
     with open(path,'wb') as file:
         #write samples as json
         pickle.dump(samples,file)
 def load_samples(name:str) -> list['Sample']:
-    with open(samples_path+name,'rb') as file:
+    with open(settings.samples_folder+name,'rb') as file:
         samples=pickle.load(file)
     return samples
 def create_sample_file(sample_size:int,file_name:str):
