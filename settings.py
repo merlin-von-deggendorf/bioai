@@ -1,5 +1,6 @@
 
 import json
+import os
 test_folder='/mnt/tests/'
 base_folder = '/mnt/data/'
 test_samples_folder=test_folder+'samples/'
@@ -13,21 +14,36 @@ text_sample_folder='/mnt/data/text_samples/'
 uni_prot_db = 'uniprot_sprot.dat'
 abs_uni_prot_db = base_folder + uni_prot_db
 samples_folder=base_folder+'samples/'
-settings_path='/etc/bioai/settings.json'
+settings_path='~/.bioai/settings.json'
 settings_file=None
 
 class Settings:
     def __init__(self):
         self.swiss_line_count:int = 0
 
-def save_settings():
+def save_settings() -> bool:
     global settings_file
     global settings_path
+    if settings_file is not None:
+        os.makedirs(os.path.dirname(settings_path), exist_ok=True)
+        with open(settings_path, 'w') as f:
+            json.dump(settings_file.__dict__, f)
+            return True
+    return False
 
-def load_settings():
+def load_settings() -> Settings:
     global settings_file
     global settings_path
-
+    if settings_file is not None:
+        return settings_file
+    try:
+        with open(settings_path, 'r') as f:
+            settings_file = Settings()
+            settings_file.__dict__ = json.load(f)
+            return settings_file
+    except:
+        settings_file = Settings()
+        return settings_file
 
 
 #check if main

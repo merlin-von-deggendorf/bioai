@@ -4,6 +4,7 @@ import tkinter as tk
 import tkinter.ttk as ttk
 import settings
 import gui
+from Bio import SwissProt
 
 class SampleSplitter:
     def __init__(self, parent:tk.Frame):
@@ -23,13 +24,14 @@ class SampleSplitter:
         self.load_button.grid(row=2, column=0)
         self.count_lines = tk.Button(self.container, text="Count Lines", command=self.count_lines)
         self.count_lines.grid(row=1, column=1)
+        self.count_entries = tk.Button(self.container, text="Count Entries", command=self.count_entries)
+        self.count_entries.grid(row=1, column=2)
         self.line_count=gui.LabeledEntry(self.container, "Line Count", 1, 0)
         self.line_count.entry.config(width=6)
         #set linecount to the value in the settings file
         self.line_count.entry.insert(0, str(self.settings.swiss_line_count))
 
     def count_lines(self):
-        print("Count lines clicked")
         file=settings.abs_uni_prot_db
         #read file line by line
         count = 0
@@ -38,6 +40,8 @@ class SampleSplitter:
                 count+=1
         self.line_count.entry.delete(0, tk.END)
         self.line_count.entry.insert(0, str(count))
+        self.settings.swiss_line_count = count
+        settings.save_settings()
         #save the line count to settings file
 
 
@@ -63,3 +67,31 @@ class SampleSplitter:
         print("Generate samples clicked")
         pass
                     
+def count_entries():
+    #read the file line by line
+    with open(settings.abs_uni_prot_db, "r") as f:
+        count = 0
+        for line in f:
+            if line.startswith("//"):
+                count+=1
+        print(count)
+    #count using id line
+    with open(settings.abs_uni_prot_db, "r") as f:
+        count = 0
+        for line in f:
+            if line.startswith("ID"):
+                count+=1
+        print(count)
+def analyse_database():
+    with open(settings.abs_uni_prot_db, "r") as f:
+        for line in f:
+            #check if line starts with whitespace
+            
+            if line.startswith(" "):
+                print(line)
+
+
+
+if __name__ == '__main__':
+    #read first line of the file
+    count_entries()

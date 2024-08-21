@@ -4,6 +4,7 @@ import go_analyzer_gui
 import colabfold
 import autodock
 import sample_splitter
+import settings
 
 # Create the main window
 root = tk.Tk()
@@ -35,5 +36,9 @@ notebook.add(autodock_tab, text="AutoDock")
 autodock.AutoDockGui(autodock_tab)
 # Focus the testing tab
 notebook.select(tab1)
+def on_closing():
+    settings.save_settings()
+    root.quit()
 # Start the Tkinter event loop
+root.protocol("WM_DELETE_WINDOW",on_closing )
 root.mainloop()
