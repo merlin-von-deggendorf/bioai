@@ -19,6 +19,8 @@ class ColabFoldGui:
         #add open structure button
         self.open_structure_button = tk.Button(parent, text="Open Structure", command=self.open_structure)
         self.open_structure_button.grid(row=0, column=2)
+        self.close_structure_button = tk.Button(parent, text="Close Structure", command=self.close_structure)
+        self.close_structure_button.grid(row=0, column=3)
         #get list of all files in the structure folder
         self.structure_result=None
         self.structure_folder=settings.structure_folder
@@ -34,16 +36,25 @@ class ColabFoldGui:
         sequence=self.sequence_text.get("1.0", tk.END)
         print(sequence)
         structure_result=alphafoldcall.StructureResult(sequence)
-        structure_result.generate_structure()
+        structure_result.generate_structure(amber=True)
         structure_result.join()
         self.structure_result=structure_result
         self.update_structure_combobox()
+        #select the item with the id
+        self.structure_combobox.set(structure_result.id)
+        print(structure_result.stdout)
+        print(structure_result.stderr)
     def open_structure(self):
         id=self.structure_combobox.get()
-        
+        path=alphafoldcall.get_pdb(id,1,True)
+        print(path)
         finish_launching()
         cmd.reinitialize()
         cmd.load(path)
         cmd.show("cartoon")
         cmd.zoom()
+    def close_structure(self):
+        cmd.delete("all")
+        cmd.quit()
+        pass
       

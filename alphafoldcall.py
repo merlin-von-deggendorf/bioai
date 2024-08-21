@@ -9,6 +9,20 @@ import data_manager  # Assuming this is already defined in your environment
 import shutil
 
 
+def id_2_path(id: str, folder: Optional[str]=None) -> str:
+    if folder is None:
+        folder = settings.structure_folder
+    return os.path.join(folder, id)
+
+def get_pdb(id: str, rank: int, relaxed: bool) -> str:
+    path=id_2_path(id)
+    relaxed_str = "relaxed" if relaxed else "unrelaxed"
+    rank_str = str(rank).zfill(3)
+    for i in os.listdir(path):
+        if i.startswith(f"{id}_{relaxed_str}_rank_{rank_str}") and i.endswith(".pdb"):
+            return f'{path}/{i}'
+
+
 class StructureResult:
     def __init__(self, sequence, id=None, sequence_folder=None, structure_folder=None) -> None:
         # Initialize parameters
@@ -30,14 +44,12 @@ class StructureResult:
         with open(self.src_file, 'w') as file:
             file.write(fasta)
 
-    def generate_structure(self,amber:bool=False,templates:bool=False) -> 'StructureResult':
+    def generate_structure(self,amber:bool=True) -> 'StructureResult':
         self.is_amber=amber
         self._write_fasta()
         # Function to run the colabfold_batch script
         def run_colabfold(structure_result: 'StructureResult'):
             commands = ['./colabfold_batch', self.src_file, self.structure_folder]
-            if templates:
-                commands.append('--templates')
             if amber:
                 commands.append('--amber')
             result = subprocess.run(commands,
@@ -105,10 +117,12 @@ if __name__ == "__main__":
     # Find the first sample without AlphaFold ID and no PDB ID
     sample = next((s for s in samples if len(s.alpha_fold_ids) == 0 and len(s.pdb_ids) == 0), None)
 
-    result = StructureResult(sample.sequence, sample.id)
+    result = StructureResult("RISALEVVMQPLLDTGVPREACAAKAARLLTRLNVPEESGKTIINVTHDLDHVLERAKRVIVLKNGKIIKDGQPY", "firsttestsampe2")
 
-    result.generate_structure(True, True)
+    result.generate_structure(amber=True, templates=False)
     result.join()
+
+    print(result.get_absolute_file())
     
 
     
