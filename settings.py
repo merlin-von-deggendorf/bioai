@@ -1,3 +1,5 @@
+
+import json
 test_folder='/mnt/tests/'
 base_folder = '/mnt/data/'
 test_samples_folder=test_folder+'samples/'
@@ -11,10 +13,21 @@ text_sample_folder='/mnt/data/text_samples/'
 uni_prot_db = 'uniprot_sprot.dat'
 abs_uni_prot_db = base_folder + uni_prot_db
 samples_folder=base_folder+'samples/'
+settings_path='/etc/bioai/settings.json'
+settings_file=None
 
-# Function to get the full file path
-def get_uni_prot_file():
-    return base_folder + uni_prot_db
+class Settings:
+    def __init__(self):
+        self.swiss_line_count:int = 0
+
+def save_settings():
+    global settings_file
+    global settings_path
+
+def load_settings():
+    global settings_file
+    global settings_path
+
 
 
 #check if main
