@@ -84,14 +84,36 @@ def count_entries():
         print(count)
 def analyse_database():
     with open(settings.abs_uni_prot_db, "r") as f:
+        dic : dict[str:int] = {}
+        third_char_dic : dict[str:int] = {}
+        line_count = 0
         for line in f:
+            line_count+=1
             #check if line starts with whitespace
-            
-            if line.startswith(" "):
-                print(line)
-
+            #get first two characters of the line
+            substr = line[:2]
+            if substr in dic:
+                dic[substr]+=1
+            else:
+                dic[substr] = 1
+            #get the third character of the line
+            #test if the third character is aviailable
+            if len(line) > 2:
+                third_char = line[2]
+                if third_char in third_char_dic:
+                    third_char_dic[third_char]+=1
+                else:
+                    third_char_dic[third_char] = 1
+        #list all keys in the dictionary
+        print("Keys in the dictionary")
+        for key in dic:
+            print(key, dic[key])
+        print("Third character dictionary")
+        for key in third_char_dic:
+            print(f'key: {key} value: {third_char_dic[key]}')
+        print("Total lines", line_count)
 
 
 if __name__ == '__main__':
     #read first line of the file
-    count_entries()
+    analyse_database()
