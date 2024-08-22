@@ -113,7 +113,15 @@ def analyse_database():
             print(f'key: {key} value: {third_char_dic[key]}')
         print("Total lines", line_count)
 
-
+def feature_analysis():
+    with open(settings.abs_uni_prot_db, "r") as f:
+        counter=0
+        for record in SwissProt.parse(f):
+            for feature in record.features:
+                print(feature)
+            counter+=1
+            if counter > 1000:
+                break
 if __name__ == '__main__':
     #read first line of the file
-    analyse_database()
+    feature_analysis()
