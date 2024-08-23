@@ -23,7 +23,7 @@ tab1 = tk.Frame(notebook)
 notebook.add(tab1, text="Testing1")
 sample_splitter.SampleSplitter(tab1)
 testing_tab = tk.Frame(notebook)
-notebook.add(testing_tab, text="Testing2")
+notebook.add(testing_tab, text="Data Reformatter")
 go_analyzer_gui.GoAnalyzer(testing_tab)
 
 # Local colabfold tab

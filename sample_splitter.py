@@ -24,7 +24,7 @@ class SampleSplitter:
         self.load_button.grid(row=2, column=0)
         self.count_lines = tk.Button(self.container, text="Count Lines", command=self.count_lines)
         self.count_lines.grid(row=1, column=1)
-        self.count_entries = tk.Button(self.container, text="Count Entries", command=self.count_entries)
+        self.count_entries = tk.Button(self.container, text="Count Entries", command=count_entries)
         self.count_entries.grid(row=1, column=2)
         self.line_count=gui.LabeledEntry(self.container, "Line Count", 1, 0)
         self.line_count.entry.config(width=6)
@@ -86,6 +86,7 @@ def analyse_database():
     with open(settings.abs_uni_prot_db, "r") as f:
         dic : dict[str:int] = {}
         third_char_dic : dict[str:int] = {}
+        feature_dic : dict[str:int] = {}
         line_count = 0
         for line in f:
             line_count+=1
@@ -96,6 +97,9 @@ def analyse_database():
                 dic[substr]+=1
             else:
                 dic[substr] = 1
+            if line.startswith("FT"):
+
+                pass
             #get the third character of the line
             #test if the third character is aviailable
             if len(line) > 2:
@@ -112,16 +116,24 @@ def analyse_database():
         for key in third_char_dic:
             print(f'key: {key} value: {third_char_dic[key]}')
         print("Total lines", line_count)
+        print("Feature dictionary")
+        for key in feature_dic:
+            print(f'key: {key} value: {feature_dic[key]}')
 
-def feature_analysis():
+def feature_analysis(limited=False):
     with open(settings.abs_uni_prot_db, "r") as f:
         counter=0
+        feature_types = set()
         for record in SwissProt.parse(f):
+        
             for feature in record.features:
-                print(feature)
-            counter+=1
-            if counter > 1000:
-                break
+                feature_types.add(feature.type)
+            if limited:
+                counter+=1
+                if counter > 10000:
+                    break
+        print(feature_types)
+       
+
 if __name__ == '__main__':
-    #read first line of the file
     feature_analysis()
