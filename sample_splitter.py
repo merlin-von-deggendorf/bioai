@@ -5,6 +5,7 @@ import tkinter.ttk as ttk
 import settings
 import gui
 from Bio import SwissProt
+import bioai
 
 class SampleSplitter:
     def __init__(self, parent:tk.Frame):
@@ -120,20 +121,33 @@ def analyse_database():
         for key in feature_dic:
             print(f'key: {key} value: {feature_dic[key]}')
 
-def feature_analysis(limited=False):
+def feature_analysis(limit:int=None):
     with open(settings.abs_uni_prot_db, "r") as f:
         counter=0
         feature_types = set()
         for record in SwissProt.parse(f):
-        
             for feature in record.features:
                 feature_types.add(feature.type)
-            if limited:
+            if limit is not None:
                 counter+=1
-                if counter > 10000:
+                if counter > limit:
                     break
         print(feature_types)
+def feature_analysis2(limit:int=None):
+    with open(settings.abs_uni_prot_db, "r") as f:
+        counter=0
+        feature_types = set()
+        for record in SwissProt.parse(f):
+            protein = bioai.Protein()
+            protein.create_by_entry(record)
+            for feature in record.features:
+                feature_types.add(feature.type)
+            if limit is not None:
+                counter+=1
+                if counter > limit:
+                    break
+                
        
 
 if __name__ == '__main__':
-    feature_analysis()
+    feature_analysis2(100)
