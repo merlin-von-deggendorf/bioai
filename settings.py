@@ -1,7 +1,7 @@
 
 import json
 import os
-test_folder='/mnt/tests/'
+test_folder='/mnt/data/tests/'
 base_folder = '/mnt/data/'
 test_samples_folder=test_folder+'samples/'
 test_structure_folder=test_folder+'structures/'
