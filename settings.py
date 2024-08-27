@@ -16,6 +16,9 @@ abs_uni_prot_db = base_folder + uni_prot_db
 samples_folder=base_folder+'samples/'
 settings_path='~/.bioai/settings.json'
 settings_file=None
+abs_protein_container = base_folder + 'protein_container.pkl'
+autodock_directory='/mnt/src/AutoDock-GPU/'
+autodock_working_directory='/mnt/tests/autodock/'
 
 class Settings:
     def __init__(self):
@@ -59,3 +62,4 @@ if __name__ == '__main__':
     os.makedirs(structure_folder, exist_ok=True)
     os.makedirs(text_sample_folder, exist_ok=True)
     os.makedirs(samples_folder, exist_ok=True)
+    os.makedirs(autodock_working_directory, exist_ok=True)
