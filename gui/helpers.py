@@ -4,7 +4,7 @@ from tkinter import ttk
 from typing import Optional
 
 class LabeledEntry:
-    def __init__(self,parent:tk.Frame,label:str,grid_x,grid_y,value:str=None) -> None:
+    def __init__(self,parent:tk.Frame,label:str,grid_x:int,grid_y:int,value:str=None) -> None:
         self.frame = tk.Frame(parent)
         self.frame.grid(row=grid_x,column=grid_y)
         self.label = tk.Label(self.frame,text=label)
@@ -16,7 +16,10 @@ class LabeledEntry:
     def get(self) -> str:
         return self.entry.get()
     def get_int(self) -> int:
-        return int(self.entry.get())
+        try:
+            return int(self.entry.get())
+        except ValueError:
+            return None
 
 
 

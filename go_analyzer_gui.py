@@ -34,7 +34,6 @@ class GoAnalyzer:
         self.sample_name : ttk.Combobox = ttk.Combobox(frame)
         self.sample_name['values'] = filenames
         self.sample_name.grid(row=1, column=1)
-        self.sample_name.current(0)
         self.generate_sample_button = ttk.Button(frame, text="Generate Sample", command=self.generate_sample)
         self.generate_sample_button.grid(row=1, column=2)
         self.load_sample_button = ttk.Button(frame, text="Load Sample", command=self.load_sample)
@@ -53,7 +52,6 @@ class GoAnalyzer:
         self.sample_data_text_area = tk.Text(frame, width=100, height=20)
         self.sample_data_text_area.grid(row=5, column=0, columnspan=8)
         self.sample_data_text_area.config(state="disabled")
-        self.load_sample()
     def copy_to_test(self):
         sample_name = self.sample_name.get()
         #copy the selected sample to the test folder

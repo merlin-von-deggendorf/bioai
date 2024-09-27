@@ -13,6 +13,16 @@ class AutoDocker:
         alpha_fold = protein.download_alpha_fold(settings.autodock_working_directory)
         mol=feature.chebi_download(settings.autodock_working_directory)
         print(f'AlphaFold: {alpha_fold} Ligand: {mol}')
+        #convert to pdbqt using obabel
+        self.alpha_pdbqt=self.convert_to_pdbqt(alpha_fold)
+        self.ligand_pdbqt=self.convert_to_pdbqt(mol)
+    def convert_to_pdbqt(self, file_path:str):
+        #find index of last dot
+        last_dot_index = file_path.rfind('.')
+        #replace last dot with .pdbqt
+        pdbqt_file = file_path[:last_dot_index]+'.pdbqt'
+        os.system(f'obabel {file_path} -O {pdbqt_file} --partialcharge gasteiger')
+        return pdbqt_file
         
 
     def clear_autodock_working_directory(self):

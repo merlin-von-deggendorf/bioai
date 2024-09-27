@@ -18,7 +18,10 @@ settings_path='~/.bioai/settings.json'
 settings_file=None
 abs_protein_container = base_folder + 'protein_container.pkl'
 autodock_directory='/mnt/src/AutoDock-GPU/'
+autodock_file=autodock_directory+'bin/autodock_gpu_64wi'
 autodock_working_directory='/mnt/tests/autodock/'
+UNIPROT_FILE_RAM='/mnt/ramdisk/uniprot_sprot.dat'
+SAMPLES_PATH='/mnt/data/samples/'
 
 class Settings:
     def __init__(self):

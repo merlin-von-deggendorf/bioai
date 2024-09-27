@@ -5,6 +5,7 @@ import requests
 import settings
 import sys
 import pickle
+import random
 
 class Feature:
     def __init__(self):
@@ -26,7 +27,7 @@ class Feature:
         if chebiid.startswith(chebistart):
             chebiid=chebiid[len(chebistart):]
             print(f'Chebi id: {chebiid}')
-            return download_chebi_molecule(chebiid,os.path.join(path,f'{chebiid}.mol'))
+            return download_chebi_molecule(chebiid,os.path.join(path,f'{chebiid}.sdf'))
         else:
             return None
 
@@ -104,6 +105,15 @@ class ProteinContainer:
                     counter+=1
                     if counter > limit:
                         break
+    def generate_shuffled(self,count:int)->'ProteinContainer':
+        proteincontainer=ProteinContainer()
+        for i in range(count):
+            random_protein=self.select_ramdom()
+            if proteincontainer.find_by_id(random_protein.id) is None:
+                proteincontainer.add_protein(random_protein)
+        return proteincontainer
+    def select_ramdom(self)->Protein:
+        return random.choice(self.proteins)
     def find_by_id(self,id:str) -> Protein:
         for protein in self.proteins:
             if protein.id == id:
@@ -168,7 +178,8 @@ def copy_alphafold_structure(uniprot_id,path)->Optional[str]:
     return None
 
 def download_chebi_molecule(chebi_id, save_path):
-    url = f'https://www.ebi.ac.uk/chebi/saveStructure.do?defaultImage=true&chebiId={chebi_id}&imageId=0'
+    #url = f'https://www.ebi.ac.uk/chebi/saveStructure.do?defaultImage=true&chebiId={chebi_id}&imageId=0'
+    url = f'https://www.ebi.ac.uk/chebi/saveStructure.do?sdf=true&chebiId={chebi_id}&imageId=0'
     response = requests.get(url)
 
     if response.status_code == 200:
@@ -178,11 +189,3 @@ def download_chebi_molecule(chebi_id, save_path):
     else:
         return None
 
-def download_chebi_molecule2(chebi_id):
-    url = f'https://www.ebi.ac.uk/chebi/saveStructure.do?sdf=true&chebiId={chebi_id}&imageId=0'
-    response = requests.get(url)
-
-    if response.status_code == 200:
-        print(response.text)
-    else:
-        print(f'Failed to download {chebi_id}. HTTP status code: {response.status_code}')

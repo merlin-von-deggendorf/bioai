@@ -2,7 +2,8 @@
 import tkinter as tk
 from tkinter import ttk
 import bioai
-import autodocker
+
+
 class ProteinContainerGUI:
     def __init__(self,frame:tk.Frame, protein_container: bioai.ProteinContainer):
         self.protein_container = protein_container
@@ -29,9 +30,7 @@ class ProteinContainerGUI:
         self.filtered_proteins.bind("<<ComboboxSelected>>", self.protein_selected)
         self.protein_features=ttk.Combobox(self.frame,width=100)
         self.protein_features.grid(row=0,column=3)
-
-        self.dock_button = tk.Button(self.frame, text="AutoDock",command=self.dock)
-        self.dock_button.grid(row=0,column=4)
+        
     def dock(self):
         protein_id = self.filtered_proteins.get()
         protein=self.protein_container.find_by_id(protein_id)
@@ -53,3 +52,4 @@ class ProteinContainerGUI:
         self.text_area.insert(tk.END,str(protein))
         self.protein_features['values'] = [str(feature) for feature in protein.features]
         #add code to display the protein in a new window
+

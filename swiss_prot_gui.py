@@ -22,23 +22,18 @@ notebook.grid(row=0, column=0)
 tab1 = tk.Frame(notebook)
 notebook.add(tab1, text="Testing1")
 sample_splitter.SampleSplitter(tab1)
-# testing_tab = tk.Frame(notebook)
-# notebook.add(testing_tab, text="Data Reformatter")
-# go_analyzer_gui.GoAnalyzer(testing_tab)
+testing_tab = tk.Frame(notebook)
+notebook.add(testing_tab, text="Data Reformatter")
+go_analyzer_gui.GoAnalyzer(testing_tab)
 
 # Local colabfold tab
 colabfold_tab = tk.Frame(notebook)
 notebook.add(colabfold_tab, text="ColabFold")
 colabfold.ColabFoldGui(colabfold_tab)
-
-autodock_tab = tk.Frame(notebook)
-notebook.add(autodock_tab, text="AutoDock")
-autodock.AutoDockGui(autodock_tab)
-# Focus the testing tab
 def on_closing():
     settings.save_settings()
     root.quit()
 # Start the Tkinter event loop
 root.protocol("WM_DELETE_WINDOW",on_closing )
-notebook.select(autodock_tab)
+notebook.select(colabfold_tab)
 root.mainloop()
