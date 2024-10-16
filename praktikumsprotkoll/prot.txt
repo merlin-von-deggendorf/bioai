@@ -1,0 +1,22 @@
+10.10.24
+https://www.youtube.com/watch?v=U0s0f995w14&t=2815s
+
+Basics Transformer
+
+16.10.24
+-Softmax
+-Embedding: Token,Positional
+
+-Autoencoder
+    Programming of two different autoencoders, one is based on a substitution matrix the other one
+    should be based on electrochemical properties.
+
+        Electrochemical properties:
+            are taken from the AAindex database. Those properties are then reduced in dimensionality
+        substitution matrix:
+            a substitution matrix is calculated and used to encode the amino acids.
+
+        The performance of both methods will be compared.
+
+
+
