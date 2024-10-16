@@ -15,3 +15,5 @@ General research:
             https://www.cs.cit.tum.de/bio/home/
             https://predictprotein.org/
 
+
+testing pytorch on windows/after setting it up on linux already
