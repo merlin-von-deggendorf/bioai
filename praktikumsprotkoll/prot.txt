@@ -10,5 +10,8 @@ General research:
     -Embedding: Token,Positional
     -Autoencoder
 
-- Research: https://www.biorxiv.org/content/10.1101/2024.07.01.600583v1.full
+- Focused research:
+            https://www.biorxiv.org/content/10.1101/2024.07.01.600583v1.full
+            https://www.cs.cit.tum.de/bio/home/
+            https://predictprotein.org/
 
