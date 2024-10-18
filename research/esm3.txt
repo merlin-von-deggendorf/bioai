@@ -1,0 +1,7 @@
+How is the function defined, encoded, and retrieved in the model? From which source is the data retrieved? Especially the function of the sequence?
+
+
+"Since the local neighborhoods of each structure token contain information about neighboring parts of the structure, we also provide the model with a mechanism to condition on backbone atomic coordinates directly via geometric attention in the first transformer block. To support higher level abstractions of structure, we include tracks for secondary structure (SS8) tokens and solvent accessible surface area (SASA) tokens. Keyword tokens describing biological activity, such as binding, enzymatic function, and domain or fold classifications, allow an even higher level semantic description of protein architecture and function. Residue level annotation tokens indicate functions of individual residues, such as catalytic sites and post-translational modifications."
+
+"Sequences are annotated with function keywords using a library of hidden markov models (40)."
+

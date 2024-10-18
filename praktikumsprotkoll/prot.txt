@@ -23,3 +23,4 @@ testing pytorch on windows/after setting it up on linux already
 https://github.com/agemagician/ProtTrans?tab=readme-ov-file#install
 
 How is the function defined, encoded, and retrieved in the model? From which source is the data retrieved? Especially the function of the sequence?
+
