@@ -1,0 +1,9 @@
+die Arbeitszeit wird so berechnet:
+
+vom 14.10.2024 bis zum 14.03.2025 je 4 Stunden pro Tag ohne feiertage und urlaubstage dafür aber eben nur halbtags
+
+Hier ist das Stundenkonto, also Zeiten, die ich von diesem Plan abweiche: 
+
+negativ Werte sind zu wenig gearbeitete Stunden, positive Werte sind zu viel gearbeitete Stunden
+
+18.10.24: -8 Stunden

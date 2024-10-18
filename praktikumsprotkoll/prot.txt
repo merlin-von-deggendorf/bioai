@@ -27,5 +27,5 @@ How is the function defined, encoded, and retrieved in the model? From which sou
 18.10.24
 
 12:00 bis 13:00 Reko
-18:00 Treffen mit Professor
+https://huggingface.co/docs
 
