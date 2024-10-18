@@ -5,5 +5,6 @@ vom 14.10.2024 bis zum 14.03.2025 je 4 Stunden pro Tag ohne feiertage und urlaub
 Hier ist das Stundenkonto, also Zeiten, die ich von diesem Plan abweiche: 
 
 negativ Werte sind zu wenig gearbeitete Stunden, positive Werte sind zu viel gearbeitete Stunden
+vom 18.10.2024 ab wird das Kontingent täglich geupdated der Wert bezieht sich jeweils auf den vortag und entspricht dem akkumulierten Wert, also der Summe der Abweichungen seit dem 14.10.2024
 
 -8 Stunden
