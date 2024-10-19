@@ -36,3 +36,8 @@ first generated sequence by esm3
 Generated Protein Sequence: MALSLEYSDESMPKDPNKWLSTHPEMCTTQSNIVRNARVDPELKPLRVSGYDQATSLRILNNGHAFNVEFDDSQDKAVLKGGPLDGTYRLIQFHFHWGSLDGQGSEHTVDKKKYAAELHLVHWNTKYGDFGKAVQQPDGLAVLGIFLKVGSAKPGLQKVVDVLDSIKTKGKSADFTNFDPRGLLPESLDYWTYPGSLTTPPCFESVTWIVLKSPVDVSAKQLDKFRTLTNAAEGERPHNEHNFRPIQVLGKRVVYGSTVP
 
 Research: automated signal pathway and coexpression analysis
+
+
+-------------------Todolist und Protokoll wurden auf Wunsch zur besseren nachvollziehbarkeit auf Trello umgestellt-------------------
+
+https://trello.com/b/qLye5wq6/gfaf-praktikum
