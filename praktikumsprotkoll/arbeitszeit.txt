@@ -10,4 +10,7 @@ also der Summe der Abweichungen seit dem 14.10.2024.
 Die tägliche Arbeitszeit kann aus der Git-History rekonstruiert werden, indem die differenz der letzten beiden Einträge genommen wird.
 Wobei das Datum aus dem Commit-Log genommen wird.
 
+Summe:
 -12 Stunden
+
+
