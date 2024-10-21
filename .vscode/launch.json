@@ -7,7 +7,7 @@
             "request": "launch",
             
             // "program": "${workspaceFolder}/swiss_prot_gui.py",
-            "program": "${workspaceFolder}/autocombiner.py",
+            "program": "${workspaceFolder}/fluxbalance.py",
             "console": "integratedTerminal",
             "saveBeforeRun": true
         }
