@@ -29,3 +29,47 @@ ddcaACP_c = Metabolite(
     formula='C23H43N2O8PRS',
     name='Dodecanoyl-ACP-n-C120ACP',
     compartment='c')
+
+reaction.add_metabolites({
+    malACP_c: -1.0,
+    h_c: -1.0,
+    ddcaACP_c: -1.0,
+    co2_c: 1.0,
+    ACP_c: 1.0,
+    omrsACP_c: 1.0
+})
+
+print(reaction.reaction)
+balance= reaction.check_mass_balance()
+print(balance)
+reaction.gene_reaction_rule = '( STM2378 or STM1197 )'
+reaction.genes
+print(reaction.gene_reaction_rule)
+print(reaction.genes)
+model.add_reactions([reaction])
+print(f'{len(model.reactions)} reactions initially')
+print(f'{len(model.metabolites)} metabolites initially')
+print(f'{len(model.genes)} genes initially')
+# Iterate through the the objects in the model
+print("Reactions")
+print("---------")
+for x in model.reactions:
+    print("%s : %s" % (x.id, x.reaction))
+
+print("")
+print("Metabolites")
+print("-----------")
+for x in model.metabolites:
+    print('%9s : %s' % (x.id, x.formula))
+
+print("")
+print("Genes")
+print("-----")
+for x in model.genes:
+    associated_ids = (i.id for i in x.reactions)
+    print("%s is associated with reactions: %s" %
+          (x.id, "{" + ", ".join(associated_ids) + "}"))
+    
+model.objective = 'R_3OAS140'
+print(model.objective.expression)
+print(model.objective.direction)
