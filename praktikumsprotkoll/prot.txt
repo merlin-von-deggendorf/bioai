@@ -41,3 +41,6 @@ Research: automated signal pathway and coexpression analysis
 -------------------Todolist und Protokoll wurden auf Wunsch zur besseren nachvollziehbarkeit auf Trello umgestellt-------------------
 
 https://trello.com/b/qLye5wq6/gfaf-praktikum
+
+bug report cobrapy:
+[BUG] FVA doesn work on windows 11 and Python 3.12.7 #1410
