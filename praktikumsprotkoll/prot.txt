@@ -44,3 +44,4 @@ https://trello.com/b/qLye5wq6/gfaf-praktikum
 
 bug report cobrapy:
 [BUG] FVA doesn work on windows 11 and Python 3.12.7 #1410
+https://bmcsystbiol.biomedcentral.com/articles/10.1186/1752-0509-7-74
