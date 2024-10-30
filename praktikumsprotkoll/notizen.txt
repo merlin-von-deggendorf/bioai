@@ -2,3 +2,6 @@ pathway and interaction networks:
 
 String: Protein-Protein
 Jaspar: Transcription Factors
+
+idea for pathway simulation:
+    first calculate optimal pathways based on brenda, later introduce restrictions based on proteosome
