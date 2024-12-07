@@ -11,6 +11,6 @@ Die tägliche Arbeitszeit kann aus der Git-History rekonstruiert werden, indem d
 Wobei das Datum aus dem Commit-Log genommen wird.
 
 Summe:
-0 Stunden
+-8 Stunden
 
 
